@@ -5,12 +5,14 @@ class Hero {
     firstName: string;
     lastName: string;
     heroName: string;
+    enemyId: number;
 
     constructor(data) {
         this.id = data.id;
         this.firstName = data.firstName;
         this.lastName = data.lastName;
         this.heroName = data.heroName;
+        this.enemyId = data.enemyId;
     }
 
     static async load(ctx, args) {
