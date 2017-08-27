@@ -4,6 +4,7 @@ import koaBody from 'koa-bodyparser';
 import { graphqlKoa } from 'graphql-server-koa';
 import graphiql from 'koa-graphiql';
 import schema from './presentation/schema';
+import Hero from './business/hero';
 
 const app = new Koa();
 const router = new koaRouter();
@@ -17,7 +18,11 @@ router.post(
     graphqlKoa(async ctx => {
         return {
             schema: schema,
-            context: {},
+            context: {
+                dataLoaders: {
+                    hero: Hero.getLoaders()
+                }
+            },
             debug: true,
         };
     })
