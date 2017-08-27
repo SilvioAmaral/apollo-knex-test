@@ -1,14 +1,17 @@
 import { makeExecutableSchema } from 'graphql-tools';
+import Hero from '../business/hero';
 
 const typeDefs = [`
   type Hero {
-    id: Int!
+    id: Int
     firstName: String
     lastName: String
+    heroName: String
   }
 
   type Query {
     heroes: [Hero]
+    hero(id: Int): Hero  
   }
 
   schema {
@@ -18,18 +21,9 @@ const typeDefs = [`
 
 const resolvers = {
     Query: {
-        heroes: () => ([{
-                id: 1,
-                firstName: 'Clark',
-                lastName: 'Kent',
-            },
-            {
-                id: 2,
-                firstName: 'Bruce',
-                lastName: 'Wayne',
-            }
-        ]),
-    },
+        heroes: async(_, args, ctx) => Hero.loadAll(ctx, args),
+        hero: async(_, args, ctx) => Hero.load(ctx, args)
+    }
 }
 
 const schema = makeExecutableSchema({ typeDefs, resolvers });
