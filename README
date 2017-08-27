@@ -1,0 +1,9 @@
+Fullstack 
+
+DB: Postgresql
+
+Backend: nodejs, apollo, knex, graphql
+
+Frontend: React (future)
+
+url:https://bamtech.gitbooks.io/dev-standards/content/backend/graphql-js/getting-started-with-apollo-server-dataloader-knex.mo.html
